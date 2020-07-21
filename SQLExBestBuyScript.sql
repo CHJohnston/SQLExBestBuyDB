@@ -50,6 +50,28 @@ WHERE title ='Geek Squad' AND MiddleInitial IS NULL;
 SELECT * FROM products
 WHERE StockLevel BETWEEN 500 and 1200;
 
+/* joins: select all the computers from the products table:
+   using the products table and the categories table, 
+   return the product name and the category name  
+*/
+
+SELECT products.name, categories.name
+FROM products, categories
+WHERE products.CategoryID = categories.CategoryID AND categories.name ='computers'; 
+
+-- joins: find all product names, product prices, and products ratings that have a rating of 5
+SELECT p.name, p.Price, r.Rating
+FROM products AS p, reviews AS r
+WHERE p.ProductID = r.ProductID AND r.Rating = 5;
+
+-- joins: find the employee with the most total quantity sold.  use the sum() function and group by
+SELECT SUM(s.Quantity), e.FirstName, e.LastName
+FROM sales AS s, employees AS e
+WHERE e.EmployeeID = s.EmployeeID
+GROUP BY s.EmployeeID
+ORDER BY SUM(s.Quantity) DESC 
+LIMIT 2;
+
 
 
 
